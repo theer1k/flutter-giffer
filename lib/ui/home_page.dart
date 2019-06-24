@@ -31,10 +31,32 @@ class _HomePageState extends State<HomePage> {
       print(map);
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: Image.network(
+            "https://developers.giphy.com/static/img/dev-logo-lg.7404c00322a8.gif"),
+      ),
+      backgroundColor: Colors.black,
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  labelStyle: TextStyle(color: Colors.white),
+                  labelText: "Pesquise Aqui!",
+                  border: OutlineInputBorder()),
+              style: TextStyle(color: Colors.white, fontSize: 18.0),
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
