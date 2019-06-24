@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     if (snapshot.hasError) {
                       return Container();
                     } else
-                      _createGifTable(context, snapshot) {}
+                      return _createGifTable(context, snapshot);
                 }
               },
             ),
