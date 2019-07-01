@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
 
 import 'gif_page.dart';
 
@@ -114,25 +115,36 @@ class _HomePageState extends State<HomePage> {
               fit: BoxFit.cover,
             ),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GifPage(snapshot.data["data"][index])));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          GifPage(snapshot.data["data"][index])));
+            },
+            onLongPress: () {
+              Share.share(snapshot.data["data"][index]["images"]["fixed_height"]
+                  ["url"]);
             },
           );
         } else {
           return Container(
-            child: GestureDetector(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.add, color: Colors.white, size: 70.0),
-                  Text("Carregar mais...", style: TextStyle(color: Colors.white, fontSize: 22.0),)
-                ],
-              ), onTap: () {
-                setState(() {
-                 _offset += 19; 
-                });
-              },
-            )
-          );
+              child: GestureDetector(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.add, color: Colors.white, size: 70.0),
+                Text(
+                  "Carregar mais...",
+                  style: TextStyle(color: Colors.white, fontSize: 22.0),
+                )
+              ],
+            ),
+            onTap: () {
+              setState(() {
+                _offset += 19;
+              });
+            },
+          ));
         }
       },
       itemCount: _getCount(snapshot.data["data"]),
